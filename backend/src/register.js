@@ -13,6 +13,12 @@ router.post("/", async function (request, response) {
     if(!checkEmail){
         return response.send({status:403, message:"Please check your email"});
     }
+    if(password.indexOf(' ') >= 0){
+        return response.send({status:405,message:"Password contains space"});
+      }
+      if(password>=6){
+        return response.send({status:411, message:"Password is short"});
+      }
     if (!name || !email || !password) {
       return response.send({ status: 400, message: "Form data not provided" });
     }
