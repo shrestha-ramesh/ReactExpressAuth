@@ -1,12 +1,18 @@
 const MongoClient = require("mongodb").MongoClient;
+const { response } = require("express");
 const express = require("express");
 const router = express.Router();
 const { uri } = require("./db");
+const validator = require("email-validator");
 
 router.post("/", async function (request, response) {
     console.log("Register url is hit");
     const client = new MongoClient(uri,{useUnifiedTopology:true});
     const { name, email, password } = request.body;
+    const checkEmail = validator.validate(email);
+    if(!checkEmail){
+        return response.send({status:403, message:"Please check your email"});
+    }
     if (!name || !email || !password) {
       return response.send({ status: 400, message: "Form data not provided" });
     }
