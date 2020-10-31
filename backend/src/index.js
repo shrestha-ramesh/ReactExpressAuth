@@ -6,7 +6,11 @@ app.use(express.json());
 app.use(cors());
 const registerRouter = require('./register');
 const loginRouter = require('./login');
+const deleteRouter = require('./delete');
+const updateRouter = require('./update');
 
+app.use('/update', updateRouter);
+app.use('/delete', deleteRouter);
 app.use('/register',registerRouter);
 app.use('/login', loginRouter);
 app.get('/*',(request, response)=>{
