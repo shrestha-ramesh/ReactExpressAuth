@@ -16,7 +16,7 @@ router.post("/", async function (request, response) {
     if(password.indexOf(' ') >= 0){
         return response.send({status:405,message:"Password contains space"});
       }
-      if(password>=6){
+      if(password < 6){
         return response.send({status:411, message:"Password is short"});
       }
     if (!name || !email || !password) {

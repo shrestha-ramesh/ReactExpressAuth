@@ -5,8 +5,10 @@ const PORT = 5000;
 app.use(express.json());
 app.use(cors());
 const registerRouter = require('./register');
+const loginRouter = require('./login');
 
 app.use('/register',registerRouter);
+app.use('/login', loginRouter);
 app.get('/*',(request, response)=>{
     return response.send("404 Page Note Found");
   })
