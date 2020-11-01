@@ -2,6 +2,7 @@ const MongoClient = require("mongodb").MongoClient;
 const express = require("express");
 const router = express.Router();
 const { uri } = require("./db");
+const bcrypt = require("bcrypt");
 
 router.post("/", async function (request, response) {
     const client = new MongoClient(uri,{useUnifiedTopology:true});
@@ -19,8 +20,9 @@ router.post("/", async function (request, response) {
       if(!user){
         return response.send({status:404, message:"Account does not exit"});
       }
-      if(password !== user.password){
-        return response.send({status:401, message:"Invalid password"});
+      const isMatch = await bcrypt.compare(password, user.password)
+      if(!isMatch){
+        return response.send({status:401, message:"Invalid credentials"});
       }
       await client.close();
       return response.send({status:202,message:"Login successful"});
