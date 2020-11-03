@@ -7,7 +7,7 @@ import {
     Button,
   } from "@material-ui/core";
   import MenuIcon from "@material-ui/icons/Menu";
-  import React from "react";
+  import React,{useEffect} from "react";
   import { Link } from "react-router-dom";
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,11 +22,13 @@ import {
     },
   }));
   const Header = function () {
+    useEffect(() => {
+      const getName = localStorage.getItem("Auth");
+      if (!getName) {
+        console.log("Did not find name");
+      }
+    }, []);
     const classes = useStyles();
-    // const getName = localStorage.getItem("name");
-    // if (!getName) {
-    //   return null;
-    // }
     return (
       <div className={classes.root}>
         <AppBar position="static">

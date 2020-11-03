@@ -3,13 +3,13 @@ import { Redirect } from "react-router-dom";
 const FirstPage = () => {
   const [user, setUser] = useState(true);
 
-  useEffect(() => {
-    const getName = localStorage.getItem("name");
-    if (!getName) {
-      console.log("Did not find name");
-      setUser(false);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const getName = localStorage.getItem("Auth");
+  //   if (!getName) {
+  //     console.log("Did not find name");
+  //     setUser(false);
+  //   }
+  // }, []);
 
   return (
     <div>

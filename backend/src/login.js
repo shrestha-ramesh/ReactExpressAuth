@@ -3,6 +3,8 @@ const express = require("express");
 const router = express.Router();
 const { uri } = require("./db");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const {JWT_SECRET} = require("./jwt");
 
 router.post("/", async function (request, response) {
     const client = new MongoClient(uri,{useUnifiedTopology:true});
@@ -25,7 +27,8 @@ router.post("/", async function (request, response) {
         return response.send({status:401, message:"Invalid credentials"});
       }
       await client.close();
-      return response.send({status:202,message:"Login successful"});
+      const token = jwt.sign({ _id: user._id.toString(), email:user.email}, ""+process.env.JWT_SECRET)
+      return response.send({status:202,message:"Login successful",token});
     }catch(e){
       console.log(e);
       return response.send({status:500, message:"Internal server err"});

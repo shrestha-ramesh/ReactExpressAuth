@@ -32,7 +32,7 @@ const Login = function(props){
         }
         if(result.status === 202){
             console.log("Login suncessful")
-            localStorage.setItem("name","suraj")
+            localStorage.setItem("Auth",result.token)
             setRedirect(true)
 
             // return setMessage(result.message)
