@@ -34,8 +34,6 @@ const Login = function(props){
             console.log("Login suncessful")
             localStorage.setItem("Auth",result.token)
             setRedirect(true)
-
-            // return setMessage(result.message)
         }
     }
 

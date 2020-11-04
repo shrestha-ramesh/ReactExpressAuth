@@ -1,19 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React from "react";
 const FirstPage = () => {
-  const [user, setUser] = useState(true);
-
-  // useEffect(() => {
-  //   const getName = localStorage.getItem("Auth");
-  //   if (!getName) {
-  //     console.log("Did not find name");
-  //     setUser(false);
-  //   }
-  // }, []);
-
   return (
-    <div>
-      {user ? (
         <div style={{ backgroundColor: "gray", margin: 10, padding: 10,fontSize:30 }}>
           Hotel Description: Minutes away from the heart of downtown Ottawa, the
           109 room WelcomINNS Ottawa offers comfort and convenience at an
@@ -27,10 +14,6 @@ const FirstPage = () => {
           fitness facility available 24/7. Program Leader Evaluations:
           “Comfortable beds and nice ambiance/atmosphere.”
         </div>
-      ) : (
-        <Redirect to="/login" />
-      )}
-    </div>
   );
 };
 export default FirstPage;

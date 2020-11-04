@@ -37,10 +37,7 @@ router.post("/", async function (request, response) {
       return response.send({ status: 201, message: "User created" });
     } catch (e) {
       return response.send({status:500, message:"Internal server error"})
-      // console.log(e);
     }
   });
-  // app.get("/users", function (request, response) {
-  //   response.send(database);
-  // });
+
   module.exports=router;

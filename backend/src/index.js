@@ -8,11 +8,13 @@ const registerRouter = require('./register');
 const loginRouter = require('./login');
 const deleteRouter = require('./delete');
 const updateRouter = require('./update');
+const authRouter = require('./auth');
 
 app.use('/update', updateRouter);
 app.use('/delete', deleteRouter);
 app.use('/register',registerRouter);
 app.use('/login', loginRouter);
+app.use('/auth',authRouter);
 app.get('/*',(request, response)=>{
     return response.send("404 Page Note Found");
   })

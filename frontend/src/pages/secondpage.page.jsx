@@ -1,17 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import React from "react";
 const SecondPage = () => {
-  const [user, setUser] = useState(true);
 
-  useEffect(() => {
-    const getName = localStorage.getItem("name");
-    if (!getName) {
-      setUser(false);
-    }
-  }, []);
   return (
-    <div>
-      {user ? (
         <div style={{backgroundColor:"gray",margin:10,padding:10,fontSize:30}}>
           Courtyard Marriot Ottawa East, located just minutes from downtown.
           Conveniently situated away from congestion and crowds, we provide you
@@ -25,10 +15,6 @@ const SecondPage = () => {
           enjoyable than ever before. Program Leader Evaluations: “Great hotel!
           Staff and support were very helpful and kind.”
         </div>
-      ) : (
-        <Redirect to="/login" />
-      )}
-    </div>
   );
 };
 export default SecondPage;

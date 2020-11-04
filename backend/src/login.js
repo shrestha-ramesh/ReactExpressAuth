@@ -4,7 +4,7 @@ const router = express.Router();
 const { uri } = require("./db");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const {JWT_SECRET} = require("./jwt");
+const {jwt_secret} = require("./jwt");
 
 router.post("/", async function (request, response) {
     const client = new MongoClient(uri,{useUnifiedTopology:true});
@@ -27,7 +27,7 @@ router.post("/", async function (request, response) {
         return response.send({status:401, message:"Invalid credentials"});
       }
       await client.close();
-      const token = jwt.sign({ _id: user._id.toString(), email:user.email}, ""+process.env.JWT_SECRET)
+      const token = jwt.sign({ _id: user._id.toString(), email:user.email}, jwt_secret)
       return response.send({status:202,message:"Login successful",token});
     }catch(e){
       console.log(e);
